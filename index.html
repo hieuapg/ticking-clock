@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Clock</title>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/timezone.js"></script>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+</head>
+<body>
+    <div class="clockbox azeret-mono">
+        <button id="settings-button" class="settings-button">Settings</button>
+
+        <div id="clock" class="time"></div>
+        <div id="timezone" class="zone"></div>
+        <div id="date-and-time" class="datetime"></div>
+    </div>    
+    
+    <div id="myModal" class="modal azeret-mono">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Change Timezone</h2>
+            </div>
+            <div class="modal-body">
+                <label for="timezone-select">Select Timezone:</label>
+                <select id="timezone-select">
+                    <option value="America/Anchorage">America/Anchorage</option>
+                    <option value="America/Chicago">America/Chicago</option>
+                    <option value="America/New_York">America/New_York</option>
+                    <option value="America/Los_Angeles">America/Los_Angeles</option>
+                    <!-- Add more timezone options here -->                
+                </select>
+                <button id="apply-timezone">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="modal.js"></script>
+
+</body>
+</html>
