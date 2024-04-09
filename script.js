@@ -6,56 +6,54 @@ document.addEventListener('DOMContentLoaded', function() {
     var applyTimezoneButton = document.getElementById('apply-timezone');
 
     // Define the initial time zone
-    var timeZone = "America/New_York"; // Default timezone
+    var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Default timezone
 
     function updateTime() {
         // Get the current date and time in the specified time zone
         var currentTime = new Date();
         var formatter = new Intl.DateTimeFormat("en-US", {
-            timeZone: timeZone,
             hour12: false,
             hour: 'numeric',
             minute: 'numeric',
-            second: 'numeric'
+            second: 'numeric',
+            timeZone: timeZone
         });
-
+    
         // Format the time
         var formattedTime = formatter.format(currentTime);
-        clockElement.textContent = formattedTime;
-
-        // Get the actual timezone offset in minutes
-        var timezoneOffsetMinutes = currentTime.getTimezoneOffset(); // Note: no need to invert the sign here
         
-        // Display timezone with UTC offset
-        var timezoneOffsetHours = Math.abs(Math.floor(timezoneOffsetMinutes / 60));
-        var timezoneOffsetMinutesPart = Math.abs(timezoneOffsetMinutes % 60);
-        var sign = timezoneOffsetMinutes < 0 ? '+' : '-';
-        var timezoneOffset = sign + timezoneOffsetHours.toString().padStart(2, '0') + ':' + timezoneOffsetMinutesPart.toString().padStart(2, '0');
-        var timezone = timeZone + " (UTC " + timezoneOffset + ")";
-        timezoneElement.textContent = timezone;
-
+        // Replace "24" with "00" for midnight
+        if (formattedTime.startsWith('24')) {
+            formattedTime = '00' + formattedTime.slice(2);
+        }
+    
+        clockElement.textContent = formattedTime;
+    
         // Format the date as "Monday, 1 May, 2023"
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            timeZone: timeZone 
+        };
         var formattedDateTime = new Intl.DateTimeFormat('en-US', options).format(currentTime);
         dateTimeElement.textContent = formattedDateTime;
     }
+    
 
     // Function to handle timezone change
     function handleTimezoneChange() {
         timeZone = timezoneSelect.value;
         updateTime();
-        // Update the displayed timezone offset accordingly
-        var currentTime = new Date();
-        var newTimezoneOffsetMinutes = currentTime.getTimezoneOffset();
-        var timezoneOffsetHours = Math.abs(Math.floor(newTimezoneOffsetMinutes / 60));
-        var timezoneOffsetMinutesPart = Math.abs(newTimezoneOffsetMinutes % 60);
-        var sign = newTimezoneOffsetMinutes < 0 ? '+' : '-';
-        var timezoneOffset = sign + timezoneOffsetHours.toString().padStart(2, '0') + ':' + timezoneOffsetMinutesPart.toString().padStart(2, '0');
-        var newTimezone = timeZone + " (UTC " + timezoneOffset + ")";
-        timezoneElement.textContent = newTimezone;
+        // Update the displayed timezone accordingly
+        timezoneElement.textContent = timeZone; // Display the timezone name
         // Close the modal after applying the timezone
         closeModal();
     }
+
+    // Set the timezone element to display the default timezone
+    timezoneElement.textContent = timeZone;
 
     // Open the modal
     function openModal() {
