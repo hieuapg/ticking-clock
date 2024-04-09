@@ -1,0 +1,135 @@
+/* Adjusted CSS */
+.azeret-mono {
+    font-family: "Azeret Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clockbox {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    background-color: #f0f0f0;
+    border: 6px solid #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.time, .zone, .datetime {
+    margin: 0;
+    text-align: center;
+}
+
+.time {
+    font-size: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.zone {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.datetime {
+    font-size: 20px;
+    margin-top: 65px;
+}
+
+/* Button Styles */
+.settings-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    color: black;
+  }
+  
+  /* Modal Body */
+  .modal-body {padding: 2px 16px;}
+  
+ 
+  
+ /* Modal Content */
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 0;
+    border: 1px solid #888;
+    width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: slideFromTop;
+    animation-duration: 0.4s;
+    border: solid black 5px;
+    border-radius: 10px;
+  }
+  
+  /* Add Animation */
+  @keyframes slideFromTop {
+    from {
+      transform: translate(-50%, -150%); /* Start position above the page */
+    }
+    to {
+      transform: translate(-50%, -50%); /* Center position */
+    }
+  }
+  
+  
